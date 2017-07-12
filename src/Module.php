@@ -13,7 +13,7 @@ class Module extends \Sintattica\Atk\Core\Module
     {
     	//$this->registerNode('Users',Users::class,['admin', 'add', 'edit', 'delete', 'view']);
 		$sm = SessionManager::getInstance();
-        $sessionstatus = SessionManager::SESSION_DEFAULT,
+        $sessionstatus = SessionManager::SESSION_DEFAULT;
 		$url=Tools::dispatch_url('Search.Search','search');
         $script = 'atkSubmit("'.self::atkurlencode($sm->sessionUrl($url, $sessionstatus)).'")';
 		$text='<span class="glyphicon glyphicon-search"></span>&nbsp;'. Tools::atktext('search', $this->module);
