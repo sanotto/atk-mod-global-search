@@ -5,7 +5,7 @@ use Sintattica\Atk\Core\Atk;
 use Sintattica\Atk\Core\Tools;
 use Sintattica\Atk\Core\Menu;
 
-class Module_base extends \Sintattica\Atk\Core\Module
+class Module extends \Sintattica\Atk\Core\Module
 {
     static $module = 'Search';
 
