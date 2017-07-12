@@ -13,8 +13,8 @@ class Module extends \Sintattica\Atk\Core\Module
     {
     	//$this->registerNode('Users',Users::class,['admin', 'add', 'edit', 'delete', 'view']);
 
-		$search_piece ='<input type="text" class="form-control" placeholder="'.Tools::atktext('searchfor').'">';
-		$search_piece.='<button class="btn btn-default" type="button">Go!</button> ';
+		$search_piece ='<input type="text" class="form-control" placeholder="'.Tools::atktext('searchfor', $this->module).'">';
+		$search_piece.='<button type="button" class="btn btn-info"> <span class="glyphicon glyphicon-search"></span>'. Tools::atktext('search', $this->module).' </button>';
         $this->getMenu()->addMenuItem($search_piece, null, 'main', true, 0, static::$module, '', 'right');
 
     }

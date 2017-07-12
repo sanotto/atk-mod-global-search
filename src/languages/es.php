@@ -1,5 +1,6 @@
 <?php
 
 return [
-	'searchfor' => 'Search for ...',
+	'searchfor' => 'Buscar ...',
+	'search' => 'Buscar',
 ];

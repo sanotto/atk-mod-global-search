@@ -2,4 +2,5 @@
 
 return [
 	'searchfor' => 'Ricerca ...',
+	'search' => 'Ricerca ...',
 ];
