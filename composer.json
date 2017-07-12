@@ -1,0 +1,21 @@
+{
+  "name": "sanotto/atk-mod-global-search",
+  "description": "ATK Module to enable searching all nodes",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "framework",
+    "skeleton",
+    "atk",
+    "search"
+  ],
+  "require": {
+    "php": ">=5.5.9",
+    "sintattica/atk": "9.0.x-dev"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  }
+}

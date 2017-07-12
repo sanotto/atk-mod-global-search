@@ -1,0 +1,11 @@
+php.tags
+.idea
+.DS_Store
+.env
+composer.lock
+composer.phar
+deployer.phar
+/vendor
+/config/parameters.dev.php
+ssl.crt
+ssl.key
