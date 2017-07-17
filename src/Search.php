@@ -16,6 +16,11 @@ class Search extends Node
 	public function action_search()
 	{
 		$search= $this->m_postvars['searchfor'];
+		if (empty($search))
+		{
+			$this->renderBox(Tools::atktext('criterianeeded','Search'), Tools::atktext('Error','Search'));
+			return false;
+		}
 
 		$atk = Atk::getInstance();
 		$nodes_uris = $atk->g_nodesClasses;
@@ -39,7 +44,7 @@ class Search extends Node
 			}
 		}
 		$contents.="</ul>";
-		$this->renderBox($contents, Tools::atktext("results"));
+		$this->renderBox($contents, Tools::atktext("results",'Search'));
 
 	}
 	public function renderBox($content, $title='')
