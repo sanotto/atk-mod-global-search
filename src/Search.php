@@ -1,7 +1,7 @@
 <?php
 
 namespace sanotto\atkGlobalSearch;
-use App\Modules\AtkBuilderNode;
+
 use Sintattica\Atk\Core\Atk;
 use Sintattica\Atk\Core\Node;
 use Sintattica\Atk\Core\Tools;
@@ -25,8 +25,6 @@ class Search extends Node
 		$atk = Atk::getInstance();
 		$nodes_uris = $atk->g_nodesClasses;
 
-		unset($nodes_uris['Setup.Setup']);
-		unset($nodes_uris['Search.Search']);
 		$nodes_uris = array_keys($nodes_uris);
 		$contents='<ul>';
 		foreach($nodes_uris as $node_uri)
@@ -47,10 +45,10 @@ class Search extends Node
 		$this->renderBox($contents, Tools::atktext("results",'Search'));
 
 	}
+
 	public function renderBox($content, $title='')
 	{
 		$ui = $this->getUi();
-		#$output= Tools::href(Tools::dispatch_url("Security.Users", "admin"),"<span class='glyphicon glyphicon-print'></span> ");
 		$box =  $ui->renderBox(array(
 		'title' => $title,
 		'content' => $content,
@@ -80,6 +78,7 @@ class Search extends Node
             }
         }
         return $res;
-   } // end functi
+   }
+ 
 }
 ?>
