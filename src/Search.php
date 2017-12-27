@@ -28,7 +28,9 @@ class Search extends Node
 		$nodes_uris = array_keys($nodes_uris);
 		$contents='<ul>';
 		foreach($nodes_uris as $node_uri)
-		{
+        {
+            if ($node_uri == "Setup.Setup") continue;
+
 			$node= $atk->atkGetNode($node_uri);
 			if (isset($node->m_table))
 			{
