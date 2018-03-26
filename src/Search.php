@@ -25,8 +25,8 @@ class Search extends Node
 		$atk = Atk::getInstance();
 		$nodes_uris = $atk->g_nodesClasses;
 
-		$nodes_uris = array_keys($nodes_uris);
-		$contents='<ul>';
+        $nodes_uris = array_keys($nodes_uris);
+        $results=[];
 		foreach($nodes_uris as $node_uri)
         {
             if ($node_uri == "Setup.Setup") continue;
@@ -34,17 +34,36 @@ class Search extends Node
 			$node= $atk->atkGetNode($node_uri);
 			if (isset($node->m_table))
 			{
-				$resultset=	$node->searchDb($search);
+                $resultset=	$node->searchDb($search);
+                if (count($resultset) == 0){
+                    $resultset=	$node->searchDb(strtoupper($search));
+                }
+                if (count($resultset) == 0){
+                    $resultset=	$node->searchDb(strtolower($search));
+                }
+
 				$links = $this->recLinks($resultset, $node,$node_uri);
 
 				foreach($links as $item)
 				{
-					$contents.= '<li>'.Tools::href($item['url'],$item['title']).'</li>';
+					//$results[] = Tools::href($item['url'],$item['title']);
+					$results[] = $item;
 				}
 			}
-		}
-		$contents.="</ul>";
-		$this->renderBox($contents, Tools::atktext("results for",'Search').': '.$search);
+        }
+        $contents=Tools::atktext("No results");
+        if (count($results)==1){
+            $this->redirect($item['url'], true);
+        }
+        if (count($results)>0){
+            $contents='<ul>';
+            foreach($results as $result){
+			    $link =  Tools::href($item['url'],$item['title']);
+                $contents.='<li>'.$link.'</li>';
+            }
+            $contents.="</ul>";
+        }
+	    $this->renderBox($contents, Tools::atktext("results for",'Search').': '.$search);
 
 	}
 
@@ -69,10 +88,10 @@ class Search extends Node
 			{
 				if(method_exists($node,'searchdescriptor'))
 				{
-					$item["title"] = $node->actionTitle('admin').':'.$node->searchdescriptor($recordset[$i]);
-				}
-			    $item["url"] = Tools::dispatch_url($nodetype, "view", array("atkselector"=>$node->primaryKey($recordset[$i])));
-                $res[] = $item;
+					$item["title"] = $node->searchdescriptor($recordset[$i]);
+			        $item["url"] = Tools::dispatch_url($nodetype, "view", array("atkselector"=>$node->primaryKey($recordset[$i])));
+                    $res[] = $item;
+                }
             }
         }
         return $res;
