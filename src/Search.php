@@ -69,11 +69,7 @@ class Search extends Node
 			{
 				if(method_exists($node,'searchdescriptor'))
 				{
-					$item["title"] = $node->searchdescriptor($recordset[$i]);
-				}
-				else
-				{
-					$item["title"] = $node->descriptor($recordset[$i]);
+					$item["title"] = $node->actionTitle('admin').':'.$node->searchdescriptor($recordset[$i]);
 				}
 			    $item["url"] = Tools::dispatch_url($nodetype, "view", array("atkselector"=>$node->primaryKey($recordset[$i])));
                 $res[] = $item;
