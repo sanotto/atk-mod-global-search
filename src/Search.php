@@ -44,7 +44,7 @@ class Search extends Node
 			}
 		}
 		$contents.="</ul>";
-		$this->renderBox($contents, Tools::atktext("results",'Search'));
+		$this->renderBox($contents, Tools::atktext("results for",'Search').': '.$search);
 
 	}
 
