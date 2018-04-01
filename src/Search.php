@@ -31,7 +31,9 @@ class Search extends Node
         {
             if ($node_uri == "Setup.Setup") continue;
 
-			$node= $atk->atkGetNode($node_uri);
+            $node= $atk->atkGetNode($node_uri);
+            if(method_exists($node,'searchdescriptor')) continue;
+
 			if (isset($node->m_table))
 			{
                 $resultset=	$node->searchDb($search);
